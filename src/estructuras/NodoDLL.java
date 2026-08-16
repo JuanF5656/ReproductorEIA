@@ -1,3 +1,5 @@
+package estructuras;
+
 public class NodoDLL<E> {
     NodoDLL<E> siguiente;
     NodoDLL<E> anterior;

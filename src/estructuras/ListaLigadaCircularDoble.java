@@ -1,3 +1,5 @@
+package estructuras;
+
 public class ListaLigadaCircularDoble<E> {
     private NodoDLL<E> cabeza;
     private NodoDLL<E> actual;
