@@ -1,3 +1,5 @@
+package estructuras;
+
 public class Nodo<E> {
 
     Nodo<E> siguiente;

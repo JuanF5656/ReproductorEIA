@@ -1,3 +1,5 @@
+package modelo;
+
 public class Cancion {
     private String nombre;
     private String artista;
