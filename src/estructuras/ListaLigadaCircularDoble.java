@@ -36,4 +36,78 @@ public class ListaLigadaCircularDoble<E> {
             cabeza.anterior = newNode;
         }
     }
+    public void mostrar() {
+
+        if (isEmpty()) {
+            System.out.println("Lista vacía");
+            return;
+        }
+
+        NodoDLL<E> nodo = cabeza;
+        while (nodo != cabeza) {
+            System.out.println(nodo.valor);
+            nodo = nodo.siguiente;
+        }
+
+    }
+
+    public E siguiente() {
+
+        if (isEmpty()) {
+            return null;
+        }
+
+        actual = actual.siguiente;
+
+        return actual.valor;
+    }
+
+    public E anterior() {
+
+        if (isEmpty()) {
+            return null;
+        }
+
+        actual = actual.anterior;
+
+        return actual.valor;
+    }
+
+    public E obtenerActual() {
+
+        if (isEmpty()) {
+            return null;
+        }
+
+        return actual.valor;
+    }
+
+    public void eliminarActual() {
+
+        if (isEmpty()) {
+            return;
+        }
+
+        if (actual.siguiente == actual) {
+
+            cabeza = null;
+            actual = null;
+
+            return;
+        }
+
+        NodoDLL<E> anterior = actual.anterior;
+        NodoDLL<E> siguiente = actual.siguiente;
+
+        anterior.siguiente = siguiente;
+        siguiente.anterior = anterior;
+
+        if (actual == cabeza) {
+            cabeza = siguiente;
+        }
+
+
+        actual = siguiente;
+    }
+
 }
