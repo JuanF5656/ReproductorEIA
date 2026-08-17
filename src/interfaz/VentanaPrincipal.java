@@ -27,9 +27,10 @@ public class VentanaPrincipal extends JFrame {
     public VentanaPrincipal() {
         super("Reproductor EIA");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(900, 620);
+        setSize(960, 640);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
+        getContentPane().setBackground(Tema.FONDO);
 
         add(panelBiblioteca, BorderLayout.CENTER);
         add(panelReproductor, BorderLayout.SOUTH);
@@ -116,10 +117,7 @@ public class VentanaPrincipal extends JFrame {
         panelBiblioteca.mostrarCanciones(biblioteca);
     }
 
-    /**
-     * Reconstruye, a partir del contenido actual de "biblioteca", la estructura
-     * de datos correspondiente al modo activo, y muestra la primera canción de esa estructura.
-     */
+
     private void reconstruirEstructuraModo() {
 
         switch (modoActual) {

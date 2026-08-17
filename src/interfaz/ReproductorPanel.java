@@ -1,10 +1,13 @@
 package interfaz;
+
 import modelo.*;
-import estructuras.*;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class ReproductorPanel extends JPanel {
+
+    private static final int LADO_PORTADA = 84;
 
     private final JLabel lblPortada;
     private final JLabel lblNombre;
@@ -26,34 +29,42 @@ public class ReproductorPanel extends JPanel {
     private ReproductorListener listener;
 
     public ReproductorPanel() {
-        setLayout(new BorderLayout(12, 8));
+        setLayout(new BorderLayout(14, 8));
+        setBackground(Tema.FONDO_PANEL);
         setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createMatteBorder(1, 0, 0, 0, Color.GRAY),
-                BorderFactory.createEmptyBorder(10, 14, 10, 14)));
-        setPreferredSize(new Dimension(0, 170));
+                BorderFactory.createMatteBorder(1, 0, 0, 0, Tema.BORDE),
+                BorderFactory.createEmptyBorder(12, 16, 12, 16)));
+        setPreferredSize(new Dimension(0, 180));
 
-        lblPortada = new JLabel("♪", SwingConstants.CENTER);
-        lblPortada.setPreferredSize(new Dimension(80, 80));
+        lblPortada = new JLabel("\u266A", SwingConstants.CENTER);
+        lblPortada.setPreferredSize(new Dimension(LADO_PORTADA, LADO_PORTADA));
         lblPortada.setOpaque(true);
-        lblPortada.setBackground(new Color(60, 60, 60));
-        lblPortada.setForeground(Color.WHITE);
+        lblPortada.setBackground(new Color(50, 50, 65));
+        lblPortada.setForeground(Tema.TEXTO_SECUNDARIO);
         lblPortada.setFont(lblPortada.getFont().deriveFont(28f));
-        lblPortada.setBorder(BorderFactory.createLineBorder(Color.GRAY));
+        lblPortada.setBorder(BorderFactory.createLineBorder(Tema.BORDE));
 
         lblNombre = new JLabel("Sin reproducción");
-        lblNombre.setFont(lblNombre.getFont().deriveFont(Font.BOLD, 16f));
+        lblNombre.setFont(Tema.FUENTE_TITULO);
+        lblNombre.setForeground(Tema.TEXTO);
+
         lblArtistaAlbum = new JLabel(" ");
+        lblArtistaAlbum.setFont(Tema.FUENTE_NORMAL);
+        lblArtistaAlbum.setForeground(Tema.TEXTO);
+
         lblGeneroAnno = new JLabel(" ");
-        lblGeneroAnno.setForeground(Color.GRAY);
+        lblGeneroAnno.setFont(Tema.FUENTE_PEQUENA);
+        lblGeneroAnno.setForeground(Tema.TEXTO_SECUNDARIO);
 
         JPanel panelInfo = new JPanel();
         panelInfo.setOpaque(false);
         panelInfo.setLayout(new BoxLayout(panelInfo, BoxLayout.Y_AXIS));
         panelInfo.add(lblNombre);
+        panelInfo.add(Box.createVerticalStrut(4));
         panelInfo.add(lblArtistaAlbum);
         panelInfo.add(lblGeneroAnno);
 
-        JPanel panelIzquierdo = new JPanel(new BorderLayout(10, 0));
+        JPanel panelIzquierdo = new JPanel(new BorderLayout(14, 0));
         panelIzquierdo.setOpaque(false);
         panelIzquierdo.add(lblPortada, BorderLayout.WEST);
         panelIzquierdo.add(panelInfo, BorderLayout.CENTER);
@@ -61,20 +72,28 @@ public class ReproductorPanel extends JPanel {
         barraProgreso = new JProgressBar(0, 100);
         barraProgreso.setStringPainted(true);
         barraProgreso.setString("0:00 / 0:00");
+        barraProgreso.setForeground(Tema.ACENTO);
+        barraProgreso.setBackground(Tema.FONDO_TABLA);
+        barraProgreso.setBorder(BorderFactory.createEmptyBorder());
 
-        btnAnterior = new JButton("⏮ Anterior");
-        btnReproducir = new JButton("▶ Reproducir");
-        btnSiguiente = new JButton("Siguiente ⏭");
+        btnAnterior = Tema.botonSecundario("\u23EE Anterior");
+        btnReproducir = Tema.botonPrimario("\u25B6 Reproducir");
+        btnSiguiente = Tema.botonSecundario("Siguiente \u23ED");
 
-        JPanel panelControles = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 6));
+        JPanel panelControles = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 8));
         panelControles.setOpaque(false);
         panelControles.add(btnAnterior);
         panelControles.add(btnReproducir);
         panelControles.add(btnSiguiente);
 
         sliderCalificacion = new JSlider(0, 100, 0);
+        sliderCalificacion.setOpaque(false);
+
         lblCalificacionValor = new JLabel("Calificación: -");
-        JPanel panelCalificacion = new JPanel(new BorderLayout(8, 0));
+        lblCalificacionValor.setForeground(Tema.TEXTO);
+        lblCalificacionValor.setFont(Tema.FUENTE_NORMAL);
+
+        JPanel panelCalificacion = new JPanel(new BorderLayout(10, 0));
         panelCalificacion.setOpaque(false);
         panelCalificacion.add(lblCalificacionValor, BorderLayout.WEST);
         panelCalificacion.add(sliderCalificacion, BorderLayout.CENTER);
@@ -83,6 +102,7 @@ public class ReproductorPanel extends JPanel {
         panelCentro.setOpaque(false);
         panelCentro.setLayout(new BoxLayout(panelCentro, BoxLayout.Y_AXIS));
         panelCentro.add(barraProgreso);
+        panelCentro.add(Box.createVerticalStrut(4));
         panelCentro.add(panelControles);
         panelCentro.add(panelCalificacion);
 
@@ -138,13 +158,14 @@ public class ReproductorPanel extends JPanel {
             barraProgreso.setValue(0);
             barraProgreso.setString("0:00 / 0:00");
             sliderCalificacion.setValue(0);
+            actualizarPortada(null);
             actualizarBotones();
             return;
         }
 
         lblNombre.setText(cancion.getNombre());
-        lblArtistaAlbum.setText(cancion.getArtista() + " — " + cancion.getAlbum());
-        lblGeneroAnno.setText(cancion.getGenero() + " · " + cancion.getAnno());
+        lblArtistaAlbum.setText(cancion.getArtista() + " \u2014 " + cancion.getAlbum());
+        lblGeneroAnno.setText(cancion.getGenero() + " \u00B7 " + cancion.getAnno());
 
         duracionTotal = Math.max(cancion.getDuracion(), 1);
         segundoActual = 0;
@@ -153,8 +174,20 @@ public class ReproductorPanel extends JPanel {
         barraProgreso.setString("0:00 / " + formatoTiempo(duracionTotal));
 
         sliderCalificacion.setValue(cancion.getCalificacion());
+        actualizarPortada(cancion.getRutaPortada());
 
         actualizarBotones();
+    }
+
+    private void actualizarPortada(String rutaPortada) {
+        ImageIcon icono = Tema.cargarImagen(rutaPortada, LADO_PORTADA, LADO_PORTADA);
+        if (icono != null) {
+            lblPortada.setIcon(icono);
+            lblPortada.setText(null);
+        } else {
+            lblPortada.setIcon(null);
+            lblPortada.setText("\u266A");
+        }
     }
 
     public void habilitarAnterior(boolean habilitado) {
@@ -167,20 +200,20 @@ public class ReproductorPanel extends JPanel {
 
     private void reproducir() {
         reproduciendo = true;
-        btnReproducir.setText("⏸ Pausar");
+        btnReproducir.setText("\u23F8 Pausar");
         timerProgreso.start();
     }
 
     private void pausar() {
         reproduciendo = false;
-        btnReproducir.setText("▶ Reproducir");
+        btnReproducir.setText("\u25B6 Reproducir");
         timerProgreso.stop();
     }
 
     private void detener() {
         reproduciendo = false;
         timerProgreso.stop();
-        btnReproducir.setText("▶ Reproducir");
+        btnReproducir.setText("\u25B6 Reproducir");
     }
 
     private void avanzarProgreso() {
