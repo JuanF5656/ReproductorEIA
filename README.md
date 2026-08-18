@@ -1,7 +1,7 @@
-#Reproductor EIA
+# Reproductor EIA
 
-##Lenguajes y compiladores
-##Juan Felipe Atehortua - Thomas Gonzales
+## Lenguajes y compiladores
+## Juan Felipe Atehortua - Thomas Gonzales
 
 ## Modos de reproducción
 
