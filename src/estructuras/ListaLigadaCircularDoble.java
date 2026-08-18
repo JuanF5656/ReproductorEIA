@@ -44,11 +44,11 @@ public class ListaLigadaCircularDoble<E> {
         }
 
         NodoDLL<E> nodo = cabeza;
-        while (nodo != cabeza) {
+
+        do {
             System.out.println(nodo.valor);
             nodo = nodo.siguiente;
-        }
-
+        } while (nodo != cabeza);
     }
 
     public E siguiente() {

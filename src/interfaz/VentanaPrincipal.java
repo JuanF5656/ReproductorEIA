@@ -157,24 +157,31 @@ public class VentanaPrincipal extends JFrame {
     }
 
     private void avanzarSegunModo() {
+
         switch (modoActual) {
 
             case 0 -> {
                 if (listaCircular == null || listaCircular.isEmpty()) return;
-                // TODO: agregar un método siguiente() en ListaLigadaCircularDoble que mueva
-                // el puntero "actual" y lo devuelva (la lista es circular: nunca hay null).
+
+                Cancion siguiente = listaCircular.siguiente();
+
+                panelReproductor.mostrarCancion(siguiente);
             }
 
             case 1 -> {
                 if (cola == null || cola.isEmpty()) return;
-                cola.dequeue(); // la canción reproducida sale de la cola (FIFO)
+
+                cola.dequeue();
+
                 panelReproductor.mostrarCancion(cola.peek());
                 panelReproductor.habilitarSiguiente(!cola.isEmpty());
             }
 
             case 2 -> {
                 if (arbol == null) return;
+
                 Cancion siguiente = arbol.avanzar();
+
                 panelReproductor.mostrarCancion(siguiente);
                 panelReproductor.habilitarAnterior(arbol.puedeRetroceder());
                 panelReproductor.habilitarSiguiente(arbol.puedeAvanzar());
@@ -183,20 +190,26 @@ public class VentanaPrincipal extends JFrame {
     }
 
     private void retrocederSegunModo() {
+
         switch (modoActual) {
 
             case 0 -> {
                 if (listaCircular == null || listaCircular.isEmpty()) return;
-                // TODO: agregar un método anterior() en ListaLigadaCircularDoble (mismo caso que arriba).
+
+                Cancion anterior = listaCircular.anterior();
+
+                panelReproductor.mostrarCancion(anterior);
             }
 
             case 1 -> {
-                // No aplica: la cola simple no permite regresar a canciones anteriores.
+                // No aplica: la cola simple no permite regresar.
             }
 
             case 2 -> {
                 if (arbol == null) return;
+
                 Cancion anterior = arbol.retroceder();
+
                 panelReproductor.mostrarCancion(anterior);
                 panelReproductor.habilitarAnterior(arbol.puedeRetroceder());
                 panelReproductor.habilitarSiguiente(arbol.puedeAvanzar());
