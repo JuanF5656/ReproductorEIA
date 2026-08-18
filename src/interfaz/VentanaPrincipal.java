@@ -220,10 +220,31 @@ public class VentanaPrincipal extends JFrame {
     }
 
     private void cargarDatosDePrueba() {
-        biblioteca.add(new Cancion("Bohemian Rhapsody", "Queen", "A Night at the Opera", 354, "Rock", 1975, 95));
-        biblioteca.add(new Cancion("Yesterday", "The Beatles", "Help!", 125, "Pop", 1965, 90));
-        biblioteca.add(new Cancion("Billie Jean", "Michael Jackson", "Thriller", 294, "Pop", 1982, 92));
-        biblioteca.add(new Cancion("Creep", "Radiohead", "Pablo Honey", 238, "Alternative", 1992, 88));
+
+        biblioteca.add(new Cancion("Bohemian Rhapsody", "Queen", "A Night at the Opera", 354, "Rock", 1975, 95,"portadas/ANightAtTheOpera.png"));
+        biblioteca.add(new Cancion("Yesterday", "The Beatles", "Help!", 125, "Pop", 1965, 90,"portadas/Help.png"));
+        biblioteca.add(new Cancion("Billie Jean", "Michael Jackson", "Thriller", 294, "Pop", 1982, 92,"portadas/BillieJean.png"));
+        biblioteca.add(new Cancion("Creep", "Radiohead", "Pablo Honey", 238, "Alternative", 1992, 88,"portadas/Radiohead.png"));
+
+        biblioteca.add(new Cancion("Hotel California", "Eagles", "Hotel California", 391, "Rock", 1976, 94,"portadas/HotelCalifornia.png"));
+        biblioteca.add(new Cancion("Imagine", "John Lennon", "Imagine", 187, "Pop", 1971, 93,"portadas/Imagine.png"));
+        biblioteca.add(new Cancion("Smells Like Teen Spirit", "Nirvana", "Nevermind", 301, "Grunge", 1991, 91,"portadas/Grunge.png"));
+        biblioteca.add(new Cancion("Sweet Child O' Mine", "Guns N' Roses", "Appetite for Destruction", 356, "Rock", 1987, 90,"portadas/GNR.png"));
+        biblioteca.add(new Cancion("Like a Rolling Stone", "Bob Dylan", "Highway 61 Revisited", 369, "Rock", 1965, 89,"portadas/BobDylan.png"));
+        biblioteca.add(new Cancion("Stairway to Heaven", "Led Zeppelin", "Led Zeppelin IV", 482, "Rock", 1971, 96,"portadas/LedZeppelin.png"));
+        biblioteca.add(new Cancion("Wonderwall", "Oasis", "(What's the Story) Morning Glory?", 259, "Britpop", 1995, 87,"portadas/Oasis.png"));
+        biblioteca.add(new Cancion("Under Pressure", "Queen", "Hot Space", 248, "Rock", 1981, 91,"portadas/Queen.png"));
+        biblioteca.add(new Cancion("Purple Haze", "Jimi Hendrix", "Are You Experienced", 170, "Rock", 1967, 88,"portadas/JimiHendrix.png"));
+        biblioteca.add(new Cancion("Dream On", "Aerosmith", "Aerosmith", 267, "Rock", 1973, 89,"portadas/Aerosmith.png"));
+        biblioteca.add(new Cancion("Losing My Religion", "R.E.M.", "Out of Time", 268, "Alternative", 1991, 86,"portadas/LosingMyReligion.png"));
+        biblioteca.add(new Cancion("Take On Me", "a-ha", "Hunting High and Low", 225, "Pop", 1985, 90,"portadas/HuntingHighAndLow.png"));
+        biblioteca.add(new Cancion("Africa", "Toto", "Toto IV", 295, "Rock", 1982, 89,"portadas/TotoIV.png"));
+        biblioteca.add(new Cancion("Everybody Wants to Rule the World", "Tears for Fears", "Songs from the Big Chair", 251, "Pop", 1985, 88,"portadas/Tears.png"));
+        biblioteca.add(new Cancion("The Sound of Silence", "Simon & Garfunkel", "Sounds of Silence", 222, "Folk", 1966, 87,"portadas/SoS.png"));
+        biblioteca.add(new Cancion("Heroes", "David Bowie", "Heroes", 371, "Rock", 1977, 92,"portadas/Heroes.png"));
+        biblioteca.add(new Cancion("Paint It, Black", "The Rolling Stones", "Aftermath", 202, "Rock", 1966, 91,"portadas/PaintIt.png"));
+        biblioteca.add(new Cancion("Space Oddity", "David Bowie", "David Bowie", 318, "Rock", 1969, 90,"portadas/DavidBowie.png"));
+
         refrescarBiblioteca();
     }
 
