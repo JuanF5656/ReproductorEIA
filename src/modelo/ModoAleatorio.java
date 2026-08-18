@@ -57,6 +57,10 @@ public class ModoAleatorio implements ModoReproduccion {
         return lista.obtenerActual();
     }
 
+    public boolean isEmpty() {
+        return lista.isEmpty();
+    }
+
     public void eliminarActual() {
         lista.eliminarActual();
     }

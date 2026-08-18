@@ -20,7 +20,7 @@ public class VentanaPrincipal extends JFrame {
     private int modoActual = 0;
 
     // Solo una de estas tres está "activa" según el modo seleccionado.
-    private ListaLigadaCircularDoble<Cancion> listaCircular;
+    private ModoAleatorio modoAleatorio;
     private ColaSimple<Cancion> cola;
     private BST<Cancion> arbol;
 
@@ -123,12 +123,14 @@ public class VentanaPrincipal extends JFrame {
         switch (modoActual) {
 
             case 0 -> {
-                listaCircular = new ListaLigadaCircularDoble<>();
-                for (Cancion c : biblioteca) {
-                    listaCircular.add(c);
-                }
-                boolean hay = !listaCircular.isEmpty();
-                panelReproductor.mostrarCancion(hay ? biblioteca.get(0) : null);
+                modoAleatorio = new ModoAleatorio();
+
+                modoAleatorio.cargarCanciones(biblioteca);
+
+                Cancion actual = modoAleatorio.actual();
+                boolean hay = actual != null;
+
+                panelReproductor.mostrarCancion(actual);
                 panelReproductor.habilitarAnterior(hay);
                 panelReproductor.habilitarSiguiente(hay);
             }
@@ -161,9 +163,9 @@ public class VentanaPrincipal extends JFrame {
         switch (modoActual) {
 
             case 0 -> {
-                if (listaCircular == null || listaCircular.isEmpty()) return;
+                if (modoAleatorio == null || modoAleatorio.isEmpty()) return;
 
-                Cancion siguiente = listaCircular.siguiente();
+                Cancion siguiente = modoAleatorio.siguiente();
 
                 panelReproductor.mostrarCancion(siguiente);
             }
@@ -194,9 +196,9 @@ public class VentanaPrincipal extends JFrame {
         switch (modoActual) {
 
             case 0 -> {
-                if (listaCircular == null || listaCircular.isEmpty()) return;
+                if (modoAleatorio == null || modoAleatorio.isEmpty()) return;
 
-                Cancion anterior = listaCircular.anterior();
+                Cancion anterior = modoAleatorio.anterior();
 
                 panelReproductor.mostrarCancion(anterior);
             }
